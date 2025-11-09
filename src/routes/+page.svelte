@@ -80,12 +80,21 @@
         margin: 0;
     }
 
+    h3 {
+        text-align: center;
+        white-space: nowrap;
+        margin: 10px 0;
+        font-weight: normal;
+    }
+
     main {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        height: 80%;
+        flex: 1;
+        min-height: 0;
+        position: relative;
     }
 
     .fade-in {
@@ -105,7 +114,7 @@
         width: 50px;
         height: 50px;
         background-color: #2c292a;
-        border-radius: 12px; 
+        border-radius: 12px;
         padding: 6px;
     }
 
@@ -139,5 +148,12 @@
             display: none;
         }
     }
-    
+
+    @media (max-width: 600px) {
+        h3 {
+            white-space: normal;
+            font-size: 0.9rem;
+        }
+    }
+
 </style>

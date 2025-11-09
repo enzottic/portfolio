@@ -20,7 +20,7 @@
     :global(body) {
         width: 100%;
         min-height: 100vh;
-        overflow: auto;
+        overflow-x: hidden;
         font-family: "Roboto Mono", monospace;
     }
 
@@ -29,6 +29,8 @@
         color: #e8e9ed;
         display: flex;
         justify-content: center;
+        margin: 0;
+        padding: 0;
     }
 
     :global(a) {
@@ -38,6 +40,9 @@
     .container {
         width: 50%;
         max-width: 1200px;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
     }
 
     footer {
