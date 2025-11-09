@@ -26,18 +26,18 @@
 </script>
 
 <main>
-    <ImageModal 
-        image={selectedImage} 
-        shown={modalShown} 
+    <ImageModal
+        image={selectedImage}
+        shown={modalShown}
         closeHandler={handleModalClose}
     />
 
     <div class="grid">
         {#each Object.entries(imageModules) as [_path, module]}
-            <enhanced:img 
+            <enhanced:img
                 class="grid-image"
-                src={module.default} 
-                alt="idk" 
+                src={module.default}
+                alt="idk"
                 on:click={() => handleImageClick(module.default)}
             />
         {/each}
@@ -45,7 +45,7 @@
 </main>
 
 <style>
-    
+
     .grid {
         --gap: 1em;
         --columns: 3;
@@ -76,6 +76,12 @@
     @media (max-width: 600px) {
         .grid {
             --columns: 1;
+        }
+    }
+
+    @media (max-width: 1500px) {
+        .grid {
+            --columns: 2;
         }
     }
 

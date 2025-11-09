@@ -1,7 +1,7 @@
 <script>
-    import ImageGallery from "$lib/components/ImageGallery.svelte";
-
+    import ImageGallery from "./components/ImageGallery.svelte";
 </script>
+
 <main>
     <h1>Gallery</h1>
     <ImageGallery />

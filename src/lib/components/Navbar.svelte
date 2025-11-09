@@ -1,17 +1,18 @@
 <script lang="ts">
-    import routes from "$lib/nav-routes"
+    import routes from "$lib/nav-routes";
 </script>
 
 <div>
     <div class="buttons">
         {#each routes as route}
-            <a class="hover-underline-animation" href={route.href}>{route.label}</a>
+            <a class="hover-underline-animation" href={route.href}
+                >{route.label}</a
+            >
         {/each}
     </div>
 </div>
 
 <style>
-
     .buttons {
         text-align: center;
     }
@@ -29,7 +30,7 @@
     }
 
     .hover-underline-animation::after {
-        content: '';
+        content: "";
         position: absolute;
         width: 100%;
         transform: scaleX(0);
@@ -45,5 +46,4 @@
         transform: scaleX(1);
         transform-origin: bottom left;
     }
-
 </style>

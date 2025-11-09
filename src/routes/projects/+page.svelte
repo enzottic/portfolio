@@ -1,5 +1,7 @@
 
 <script>
+    import ImageModal from '../photos/components/ImageModal.svelte';
+
     const loopoverImages = import.meta.glob('$lib/images/project-images/loopover/*.{jpg,jpeg,png}', {
         eager: true,
         query: {
@@ -13,23 +15,45 @@
             enhanced: true
         }
     });
+
+    let modalShown = $state(false)
+    let selectedImage = $state(null)
+
+    const handleImageClick = (image) => {
+        modalShown = true
+        selectedImage = image
+    }
+
+    const handleModalClose = () => {
+        modalShown = false
+        selectedImage = null
+    }
 </script>
 
 <main>
+    <ImageModal
+        image={selectedImage}
+        shown={modalShown}
+        closeHandler={handleModalClose}
+    />
+
     <h1>Projects</h1>
 
     <h2>Loopover</h2>
 
-    <p>Winner of Best Beginner Hack at [HackCU 10](https://devpost.com/software/loopover)</p>
+    <p>Winner of Best Beginner Hack at <a href="https://devpost.com/software/loopover">HackCU 10</a></p>
 
-    <p>A 2D Rubix Cube-style puzzle game for iOS devices. Based on carykh's [Loopover](https://openprocessing.org/sketch/580366/). Made natively using Swift and SwiftUI.</p>
+    <p>A 2D Rubix Cube-style puzzle game for iOS devices. Based on carykh's <a href="https://openprocessing.org/sketch/580366/">Loopover</a>. Made natively using Swift and SwiftUI.</p>
 
     <a href="https://github.com/enzottic/loopover-ios">View on GitHub</a>
 
 <!-- insert image -->
     <div class = "demo-images">
         {#each Object.entries(loopoverImages) as [_path, module]}
-            <enhanced:img src={module.default} />
+            <enhanced:img 
+                src={module.default} 
+                on:click={() => handleImageClick(module.default)}
+            />
         {/each}
     </div>
 
@@ -39,7 +63,10 @@
 
     <div class="demo-images">
         {#each Object.entries(lexelImages) as [_path, module]}
-            <enhanced:img src={module.default} />
+            <enhanced:img 
+                src={module.default} 
+                on:click={() => handleImageClick(module.default)}
+            />
         {/each}
     </div>
 
@@ -51,6 +78,13 @@
         border-radius: 10px;
         width: 300px;
         height: auto;
+        cursor: pointer;
+        transform: scale(1);
+        transition: transform 0.3s ease;
+    }
+
+    .demo-images img:hover {
+        transform: scale(1.02);
     }
 
     .demo-images {
@@ -58,6 +92,13 @@
         gap: 20px;
         justify-content: center;
         margin-top: 20px;
+    }
+
+    @media (max-width: 1000px) {
+        .demo-images {
+            flex-direction: column;
+            align-items: center;
+        }
     }
 
 </style>
