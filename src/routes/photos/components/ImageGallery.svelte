@@ -48,7 +48,7 @@
 
     .grid {
         --gap: 1em;
-        --columns: 3;
+        --columns: 2;
         margin: 0 auto;
         display: column;
         columns: var(--columns);
@@ -73,17 +73,17 @@
     }
 
     /* fallback to 1 column when viewing on a phone */
-    @media (max-width: 600px) {
+    @media (max-width: 1500px) {
         .grid {
             --columns: 1;
         }
     }
 
-    @media (max-width: 1500px) {
+    /*@media (max-width: 1500px) {
         .grid {
             --columns: 2;
         }
-    }
+    }*/
 
     img {
         max-width: 100%;

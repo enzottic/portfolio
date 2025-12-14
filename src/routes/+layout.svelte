@@ -38,7 +38,7 @@
     }
 
     .container {
-        width: 50%;
+        width: 70%;
         max-width: 1200px;
         min-height: 100vh;
         display: flex;

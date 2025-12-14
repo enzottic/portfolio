@@ -1,0 +1,46 @@
+[
+  "alcatraz": {
+    "location": "Alcatraz Island, San Francisco, CA"
+    "camera": "Fujifilm X100VI"
+  },
+  "birds": {
+    "location": "Alcatraz Island, San Francisco, CA"
+    "camera": "Fujifilm X100VI"
+  },
+  "collapsed": {
+    "location": "Highland, IL"
+    "camera": "Fujifilm X100VI"
+  },
+  "droplets": {
+    "location": "Colorado Springs, CO"
+    "camera": "Fujifilm X100VI"
+  },
+  "java": {
+    "location": "Boulder, CO"
+    "camera": "Canon EOS R6 II"
+  },
+  "junk": {
+    "location": "Highland, IL"
+    "camera": "Fujifilm X100VI"
+  },
+  "lights": {
+    "location": "Boulder, CO"
+    "camera": "Fujifilm X100VI"
+  },
+  "mountain": {
+    "location": "Rocky Mountain National Park, CO"
+    "camera": "Fujifilm X100VI"
+  },
+  "pizza": {
+    "location": "San Francisco, CA"
+    "camera": "Fujifilm X100VI"
+  },
+  "plant": {
+    "location": "Colorado Springs, CO"
+    "camera": "Fujifilm X100VI"
+  },
+  "rockymountain": {
+    "location": "Rocky Mountain National Park, CO"
+    "camera": "Fujifilm X100VI"
+  }
+]

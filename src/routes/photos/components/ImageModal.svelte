@@ -28,6 +28,7 @@
             <enhanced:img src={props.image} />
 
             <div class="tile1"></div>
+            <h1>Yass</h1>
         {/if}
     </div>
 </main>
