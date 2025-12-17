@@ -26,9 +26,6 @@
         {#if props.image}
             <button class="close-button" onclick={closeModal} onkeydown={(e) => { if (e.key === 'Enter' || e.key === ' ') closeModal(); }}>x</button>
             <enhanced:img src={props.image} />
-
-            <div class="tile1"></div>
-            <h1>Yass</h1>
         {/if}
     </div>
 </main>
