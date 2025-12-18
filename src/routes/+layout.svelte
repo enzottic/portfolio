@@ -12,7 +12,6 @@
 <div class="container">
     <Navbar />
     {@render children?.()}
-    <footer></footer>
 </div>
 
 <style>

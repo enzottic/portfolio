@@ -36,9 +36,26 @@
             "direction": "down",
             "x": 3,
             "y": 2,
+        },
+        {
+            "clue": "Alternative term for a hot dog",
+            "answer": "FRANK",
+            "direction": "across",
+            "x": 3,
+            "y": 6
         }
 
     ]
 </script>
 
-<Crossword data={data} theme="dark" showConfetti={false} />
+<div class="screnzo-mini">
+    <h1>The Miniature</h1>
+    <h2>December 18th, 2025</h2>
+    <Crossword data={data} theme="dark" showConfetti={false} />
+</div>
+
+<style>
+    .screnzo-mini {
+        text-align: center;
+    }
+</style>

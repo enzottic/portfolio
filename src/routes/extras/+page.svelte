@@ -2,6 +2,6 @@
 
 <div class="extras-grid">
     <div class="extras-item">
-        <a href="/extras/crossword">Crossword</a>
+        <a href="/extras/crossword">The Miniature</a>
     </div>
 </div>
