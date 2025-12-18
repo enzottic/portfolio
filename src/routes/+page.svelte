@@ -8,8 +8,6 @@
 
 <svelte:head>
     <title>enzo</title>
-
-
 </svelte:head>
 
 <main>
@@ -69,10 +67,35 @@
                 </a>
             </div>
         </div>
+
+        <div class="extras-button">
+            <a href="/extras">Extras</a>
+        </div>
     </div>
 </main>
 
 <style>
+
+    .extras-button {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 10;
+    }
+
+    .extras-button a {
+        display: inline-block;
+        padding: 12px 24px;
+        background-color: #2c292a;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 12px;
+        transition: background-color 0.3s ease;
+    }
+
+    .extras-button a:hover {
+        background-color: #575455;
+    }
 
     h1 {
         text-align: center;
