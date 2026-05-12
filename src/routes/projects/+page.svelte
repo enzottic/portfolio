@@ -1,33 +1,37 @@
 
-<script>
+<script lang="ts">
     import ImageModal from '../photos/components/ImageModal.svelte';
 
-    const loopoverImages = import.meta.glob('$lib/images/project-images/loopover/*.{jpg,jpeg,png}', {
-        eager: true,
-        query: {
-            enhanced: true
+    type ImageModule = { default: string };
+
+    const loopoverImages = import.meta.glob<ImageModule>(
+        '$lib/images/project-images/loopover/*.{jpg,jpeg,png}',
+        {
+            eager: true,
+            query: { enhanced: true }
         }
-    });
+    );
 
-    const lexelImages = import.meta.glob('$lib/images/project-images/lexel/*.{jpg,jpeg,png}', {
-        eager: true,
-        query: {
-            enhanced: true
+    const lexelImages = import.meta.glob<ImageModule>(
+        '$lib/images/project-images/lexel/*.{jpg,jpeg,png}',
+        {
+            eager: true,
+            query: { enhanced: true }
         }
-    });
+    );
 
-    let modalShown = $state(false)
-    let selectedImage = $state(null)
+    let modalShown = $state(false);
+    let selectedImage = $state<string>('');
 
-    const handleImageClick = (image) => {
-        modalShown = true
-        selectedImage = image
-    }
+    const handleImageClick = (image: string) => {
+        modalShown = true;
+        selectedImage = image;
+    };
 
     const handleModalClose = () => {
-        modalShown = false
-        selectedImage = null
-    }
+        modalShown = false;
+        selectedImage = '';
+    };
 </script>
 
 <main>

@@ -24,6 +24,7 @@
 	"dependencies": {
 		"@aws-sdk/client-sqs": "^3.980.0",
 		"@sveltejs/adapter-cloudflare": "^7.2.7",
+		"mdsvex": "^0.12.7",
 		"svelte-crossword": "^0.3.4"
 	}
 }
