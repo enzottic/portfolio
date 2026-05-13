@@ -24,7 +24,7 @@
     }
 
     :global(body) {
-        background-color: #222225;
+        background-color: #0b0b0d;
         color: #e8e9ed;
         display: flex;
         justify-content: center;
