@@ -64,19 +64,6 @@
         background-color: #575455;
     }
 
-    h1 {
-        text-align: center;
-        font-size: 4rem;
-        margin: 0;
-    }
-
-    h3 {
-        text-align: center;
-        white-space: nowrap;
-        margin: 10px 0;
-        font-weight: normal;
-    }
-
     main {
         display: flex;
         flex-direction: column;
@@ -117,13 +104,6 @@
         flex-direction: row;
         justify-content: center;
         gap: 20px;
-    }
-
-    @media (max-width: 600px) {
-        h3 {
-            white-space: normal;
-            font-size: 0.9rem;
-        }
     }
 
 </style>

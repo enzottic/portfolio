@@ -1,7 +1,12 @@
 import { error } from '@sveltejs/kit';
 import type { PostModule } from '$lib/posts';
+import { getAllPosts } from '$lib/posts';
 
-export const prerender = true;
+export const prerender = 'auto';
+
+export function entries() {
+	return getAllPosts().map((post) => ({ slug: post.slug }));
+}
 
 export async function load({ params }) {
 	const modules = import.meta.glob<PostModule>('$lib/posts/*.md');
