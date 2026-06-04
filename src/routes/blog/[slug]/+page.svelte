@@ -2,6 +2,13 @@
     let { data } = $props();
     const Post = $derived(data.component);
 
+    const canonicalUrl = $derived(`https://enzottic.me/blog/${data.slug}`);
+    const ogImage = $derived(
+        data.metadata.image
+            ? new URL(data.metadata.image, 'https://enzottic.me').href
+            : undefined
+    );
+
     let proseEl: HTMLElement;
 
     $effect(() => {
@@ -41,10 +48,6 @@
 </script>
 
 <svelte:head>
-    {@const canonicalUrl = `https://enzottic.me/blog/${data.slug}`}
-    {@const ogImage = data.metadata.image
-        ? new URL(data.metadata.image, 'https://enzottic.me').href
-        : undefined}
     <title>{data.metadata.title}</title>
     {#if data.metadata.description}
         <meta name="description" content={data.metadata.description} />
