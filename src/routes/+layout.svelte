@@ -39,9 +39,22 @@
     .container {
         width: 70%;
         max-width: 1200px;
+        min-width: 0;
         min-height: 100vh;
         display: flex;
         flex-direction: column;
+    }
+
+    @media (max-width: 768px) {
+        .container {
+            width: 90%;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .container {
+            width: 94%;
+        }
     }
 
     footer {

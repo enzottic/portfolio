@@ -25,6 +25,8 @@
     img {
         display: block;
         max-width: 100%;
+        min-width: 0;
+        width: 100%;
         height: auto;
         margin: 0 auto;
         border-radius: 8px;
