@@ -1,6 +1,43 @@
 <script lang="ts">
     let { data } = $props();
     const Post = $derived(data.component);
+
+    let proseEl: HTMLElement;
+
+    $effect(() => {
+        // Re-run whenever the rendered post changes.
+        Post;
+
+        if (!proseEl) return;
+
+        const blocks = proseEl.querySelectorAll<HTMLPreElement>('pre');
+        blocks.forEach((pre) => {
+            if (pre.parentElement?.classList.contains('code-block')) return;
+
+            const wrapper = document.createElement('div');
+            wrapper.className = 'code-block';
+            pre.replaceWith(wrapper);
+            wrapper.appendChild(pre);
+
+            const button = document.createElement('button');
+            button.className = 'copy-code-btn';
+            button.type = 'button';
+            button.textContent = 'Copy';
+            button.addEventListener('click', async () => {
+                const code = pre.querySelector('code')?.innerText ?? pre.innerText;
+                try {
+                    await navigator.clipboard.writeText(code);
+                    button.textContent = 'Copied!';
+                } catch {
+                    button.textContent = 'Failed';
+                }
+                setTimeout(() => {
+                    button.textContent = 'Copy';
+                }, 1500);
+            });
+            wrapper.appendChild(button);
+        });
+    });
 </script>
 
 <svelte:head>
@@ -24,7 +61,7 @@
         </time>
     </header>
 
-    <div class="prose">
+    <div class="prose" bind:this={proseEl}>
         <Post />
     </div>
 </article>
@@ -90,6 +127,35 @@
         padding: 1rem;
         border-radius: 8px;
         overflow-x: auto;
+    }
+
+    .prose :global(.code-block) {
+        position: relative;
+    }
+
+    .prose :global(.code-block .copy-code-btn) {
+        position: absolute;
+        top: 0.5rem;
+        right: 0.5rem;
+        padding: 0.25rem 0.6rem;
+        font-family: inherit;
+        font-size: 0.75rem;
+        color: #e8e9ed;
+        background-color: #44414280;
+        border: 1px solid #ffffff20;
+        border-radius: 4px;
+        cursor: pointer;
+        opacity: 0;
+        transition: opacity 0.15s ease, background-color 0.15s ease;
+    }
+
+    .prose :global(.code-block:hover .copy-code-btn),
+    .prose :global(.code-block .copy-code-btn:focus-visible) {
+        opacity: 1;
+    }
+
+    .prose :global(.code-block .copy-code-btn:hover) {
+        background-color: #c669d8;
     }
 
     .prose :global(pre code) {

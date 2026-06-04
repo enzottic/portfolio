@@ -10,6 +10,4 @@ declare global {
 	}
 }
 
-declare module 'svelte-crossword';
-
 export {};
