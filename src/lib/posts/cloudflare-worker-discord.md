@@ -13,6 +13,8 @@ image: /og/cloudflare-worker-discord.png
 	import queueConsumer from '$lib/images/blog-images/queue-consumer.png';
 </script>
 
+<PostImage src="/og/cloudflare-worker-discord.png" alt="Cloudflare Worker build notifications on Discord" />
+
 I recently created a higher-or-lower style guessing game about Steam games (you can play it at [steamdle.xyz!](https://steamdle.xyz)), and deployed it using Cloudflare Workers. I wanted to find a way to set up notifications for when builds are running, and if they fail. I almost always have Discord open, so I figured I would try setting things up using Webhooks. It works great, so I figured I'd share!
 
 # Architecture
