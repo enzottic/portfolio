@@ -21,7 +21,8 @@
                             {new Date(post.date).toLocaleDateString(undefined, {
                                 year: 'numeric',
                                 month: 'long',
-                                day: 'numeric'
+                                day: 'numeric',
+                                timeZone: 'UTC'
                             })}
                         </time>
                         {#if post.description}

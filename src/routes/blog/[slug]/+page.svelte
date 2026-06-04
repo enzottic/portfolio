@@ -87,7 +87,8 @@
             {new Date(data.metadata.date).toLocaleDateString(undefined, {
                 year: 'numeric',
                 month: 'long',
-                day: 'numeric'
+                day: 'numeric',
+                timeZone: 'UTC'
             })}
         </time>
     </header>

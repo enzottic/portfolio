@@ -15,7 +15,7 @@ image: /og/cloudflare-worker-discord.png
 
 <PostImage src="/og/cloudflare-worker-discord.png" alt="Cloudflare Worker build notifications on Discord" />
 
-I recently created a higher-or-lower style guessing game about Steam games (you can play it at [steamdle.xyz!](https://steamdle.xyz)), and deployed it using Cloudflare Workers. I wanted to find a way to set up notifications for when builds are running, and if they fail. I almost always have Discord open, so I figured I would try setting things up using Webhooks. It works great, so I figured I'd share!
+I recently created a higher-or-lower style guessing game about Steam games (you can play it at [steamdle.xyz!](https://steamdle.xyz)), and deployed it using Cloudflare Workers. I wanted to find a way to set up status notifications for builds so I know when they succeed or fail. I almost always have Discord open, so I figured I would try setting things up using Webhooks. It works great, so I figured I'd share!
 
 # Architecture
 The way this will work is we will use a Cloudflare Queue to subscribe to worker build events. Then, we will create a separate worker that subscribes to the queue. When that worker receives a message, it will parse it, create a Discord post, and publish it to the webhook — really simple.
