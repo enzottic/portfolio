@@ -41,9 +41,37 @@
 </script>
 
 <svelte:head>
+    {@const canonicalUrl = `https://enzottic.me/blog/${data.slug}`}
+    {@const ogImage = data.metadata.image
+        ? new URL(data.metadata.image, 'https://enzottic.me').href
+        : undefined}
     <title>{data.metadata.title}</title>
     {#if data.metadata.description}
         <meta name="description" content={data.metadata.description} />
+    {/if}
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content={data.metadata.title} />
+    {#if data.metadata.description}
+        <meta property="og:description" content={data.metadata.description} />
+    {/if}
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:site_name" content="enzottic.me" />
+    <meta property="article:published_time" content={data.metadata.date} />
+    {#if ogImage}
+        <meta property="og:image" content={ogImage} />
+    {/if}
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content={ogImage ? 'summary_large_image' : 'summary'} />
+    <meta name="twitter:title" content={data.metadata.title} />
+    {#if data.metadata.description}
+        <meta name="twitter:description" content={data.metadata.description} />
+    {/if}
+    {#if ogImage}
+        <meta name="twitter:image" content={ogImage} />
     {/if}
 </svelte:head>
 

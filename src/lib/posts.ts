@@ -4,6 +4,7 @@ export type PostMetadata = {
 	title: string;
 	date: string;
 	description?: string;
+	image?: string;
 };
 
 export type PostSummary = PostMetadata & {

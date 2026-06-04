@@ -1,6 +1,8 @@
 ---
 title: How To Get Cloudflare Worker Build Notifications On Discord
 date: 2026-06-03
+description: Set up Discord notifications for your Cloudflare Worker builds using Cloudflare Queues and a forwarding worker that posts to a Discord webhook.
+image: /og/cloudflare-worker-discord.png
 ---
 
 <script>
