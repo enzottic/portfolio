@@ -1,3 +1,11 @@
+<script lang="ts">
+    import Seo from '$lib/components/Seo.svelte';
+</script>
+
+<Seo
+    title="Sage Privacy Policy"
+    description="Privacy policy for the Sage expense tracking app."
+/>
 
 <main>
     <h1>Privacy Policy</h1>

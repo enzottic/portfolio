@@ -21,6 +21,7 @@
         min-height: 100vh;
         overflow-x: hidden;
         font-family: "Roboto Mono", monospace;
+        font-size: 18px;
     }
 
     :global(body) {

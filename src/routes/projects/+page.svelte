@@ -1,6 +1,7 @@
 
 <script lang="ts">
     import ImageModal from '../photos/components/ImageModal.svelte';
+    import Seo from '$lib/components/Seo.svelte';
 
     type ImageModule = { default: string };
 
@@ -33,6 +34,10 @@
         selectedImage = '';
     };
 </script>
+
+<Seo
+    title="Projects"
+/>
 
 <main>
     <ImageModal

@@ -4,12 +4,12 @@
     import Mail from '$lib/assets/mail.svelte';
     import Github from '$lib/assets/github.svelte';
     import enzoGif from '$lib/assets/enzo.gif';
-
+    import Seo from '$lib/components/Seo.svelte';
 </script>
 
-<svelte:head>
-    <title>enzo</title>
-</svelte:head>
+<Seo
+    title="enzo"
+/>
 
 <main>
     <div class="hero-layout">
@@ -19,8 +19,6 @@
         <div class="hero-right">
             <p>I'm a full time software engineer and hobbyist photographer.</p>
             <p>I'm currently working on an expense tracking app called <a href="/sage">Sage</a>.</p>
-            <p>I'm mostly building it for myself, but I will post it once it's ready.</p>
-
             <div class="socials">
                 <div class="social-icon">
                     <a href="https://bsky.app/profile/enzo.social" target="_blank" rel="noopener noreferrer">

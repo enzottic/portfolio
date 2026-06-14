@@ -1,10 +1,11 @@
 <script lang="ts">
+    import Seo from '$lib/components/Seo.svelte';
     let { data } = $props();
 </script>
 
-<svelte:head>
-    <title>Posts</title>
-</svelte:head>
+<Seo
+    title="Posts"
+/>
 
 <main>
     <h1>Posts</h1>

@@ -37,6 +37,7 @@
 <style>
     nav {
         position: relative;
+        margin-bottom: 2.5rem;
     }
 
     .buttons {
