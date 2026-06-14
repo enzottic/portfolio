@@ -116,6 +116,7 @@ main {
     }
 
     .responsive-image {
+        width: 100%;
         max-width: 480px;
     }
 }
