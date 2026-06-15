@@ -130,6 +130,10 @@
             {/each}
         </div>
     </section>
+
+    <section class="footer">
+        <p><a href="/sage/privacy">Privacy Policy</a></p>
+    </section>
 </main>
 
 <style>
@@ -245,6 +249,10 @@ main {
 .feature-icon--outline {
     background-color: transparent;
     border: 2px dotted #8FB374;
+}
+
+.footer {
+    text-align: center;
 }
 
 @media (max-width: 1110px) {

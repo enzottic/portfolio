@@ -9,11 +9,12 @@
 
 <main>
     <h1>Privacy Policy</h1>
+    <h4>Last Updated: June 15th, 2026</h4>
 
     By using Sage, you are consenting to the terms of this privacy policy.
 
     <h2>Collection of Personal Information</h2>
-    <p>No personal data shared provided via Sage will given to any third party, under any circumstances. Your data will also never be used by Sage for any purpose without specific permission.</p>
+    <p>No personal information is collected by Sage. No data shared to Sage will be given to any third party, under any circumstances. Your data will also never be used by Sage for any purpose without specific permission.</p>
     <p>All expense data you provide is stored on-device. The only time it ever leaves the device is if you choose to enable cross-device sync via iCloud. If you choose to do so, data is stored in iCloud and is only accessible by you. Nobody, not even myself, can access this data.</p>
 
     <h2>Disclosure of Personal Information</h2>
