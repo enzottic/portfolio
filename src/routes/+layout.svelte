@@ -20,7 +20,7 @@
         width: 100%;
         min-height: 100vh;
         overflow-x: hidden;
-        font-family: "Roboto Mono", monospace;
+        font-family: "proxima-nova", sans-serif;
         font-size: 18px;
     }
 

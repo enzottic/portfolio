@@ -29,6 +29,7 @@
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalUrl} />
+    <link rel="stylesheet" href="https://use.typekit.net/sdo3luh.css">
     {#if noindex}
         <meta name="robots" content="noindex, nofollow" />
     {/if}

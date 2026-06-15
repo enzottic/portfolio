@@ -17,8 +17,8 @@
             <img class="hero-gif" src={enzoGif} alt="Enzo animation" />
         </div>
         <div class="hero-right">
-            <p>I'm a full time software engineer and hobbyist photographer.</p>
-            <p>I'm currently working on an expense tracking app called <a href="/sage">Sage</a>.</p>
+            <h2>Hi! I'm Enzo.</h2>
+            <p>I'm a full time software engineer and hobbyist photographer. I'm currently working on an expense tracking app called <a href="/sage">Sage</a>.</p>
             <div class="socials">
                 <div class="social-icon">
                     <a href="https://bsky.app/profile/enzo.social" target="_blank" rel="noopener noreferrer">
@@ -75,9 +75,10 @@
 
     .hero-layout {
         display: grid;
-        grid-template-columns: auto 1fr;
+        grid-template-columns: auto auto;
         align-items: center;
-        gap: 64px;
+        justify-content: center;
+        gap: 48px;
         max-width: 900px;
         width: 100%;
         padding: 0 24px;
@@ -94,6 +95,7 @@
         flex-direction: column;
         align-items: flex-start;
         gap: 0;
+        max-width: 420px;
     }
 
     .hero-gif {
