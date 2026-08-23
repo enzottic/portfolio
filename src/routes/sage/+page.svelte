@@ -1,5 +1,6 @@
 <script lang="ts">
     import appIcon from '$lib/images/project-images/sage/app_icon.png';
+    import sageLogo from "$lib/images/project-images/sage/SageLogoBase.png"
     import sageHero from '$lib/images/project-images/sage/sage_hero.png';
     import Seo from '$lib/components/Seo.svelte';
 
@@ -46,11 +47,6 @@
             icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-file-icon lucide-file"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/></svg>'
         },
         {
-            tagline: 'Splitwise',
-            caption: 'Integrates directly with your Splitwise account, import from Splitwise or export to it',
-            icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-split-icon lucide-split"><path d="M16 3h5v5"/><path d="M8 3H3v5"/><path d="M12 22v-8.3a4 4 0 0 0-1.172-2.872L3 3"/><path d="m15 9 6-6"/></svg>'
-        },
-        {
             tagline: 'Home screen widgets',
             caption: 'Monthly summaries right on your home screen.',
             icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-grid2x2-icon lucide-grid-2x2"><path d="M12 3v18"/><path d="M3 12h18"/><rect x="3" y="3" width="18" height="18" rx="2"/></svg>'
@@ -86,10 +82,10 @@
     <div class="hero">
         <div class="hero-text">
             <div class="title-row">
-                <img src={appIcon} class="app-icon" alt="Sage app icon" />
+                <img src={sageLogo} class="app-icon" alt="Sage app icon" />
                 <h1 class="title">Sage</h1>
             </div>
-            <p>A simple, free expense tracking app. Available for iOS, iPadOS, and macOS.</p>
+            <p>A simple, free expense tracking app. Coming soon for iOS, iPadOS, and macOS.</p>
             <a href="https://testflight.apple.com/join/RWj66HUZ">
                 <text>Download now on TestFlight</text>
             </a>
@@ -117,7 +113,7 @@
     </section>
 
     <section class="coming-soon">
-        <h2 class="coming-soon-title">And coming soon...</h2>
+        <h2 class="coming-soon-title">In The Works</h2>
         <div class="feature-grid">
             {#each comingSoon as feature}
                 <div class="feature">
@@ -159,7 +155,7 @@ main {
 .title-row {
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: baseline;
     gap: 1rem;
 }
 
@@ -183,6 +179,11 @@ main {
 
 .title {
     font-size: 3rem;
+}
+
+.title-row .title {
+    margin: 0;
+    transform: translateY(-3px);
 }
 
 .features {
