@@ -7,7 +7,7 @@
       const features = [
         {
             tagline: '100% free',
-            caption: 'Sage will be free, forever. No features will be gated behind any kind paywall',
+            caption: 'Syl will be free, forever. No features will be gated behind any kind paywall',
             icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-heart-icon lucide-heart"><path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"/></svg>'
         },
         {
@@ -73,7 +73,7 @@
 </script>
 
 <Seo
-    title="Sage"
+    title="Syl"
     description="A simple expense tracking app for iOS."
     image={sageHero}
 />
@@ -82,17 +82,17 @@
     <div class="hero">
         <div class="hero-text">
             <div class="title-row">
-                <img src={sageLogo} class="app-icon" alt="Sage app icon" />
-                <h1 class="title">Sage</h1>
+                <img src={sageLogo} class="app-icon" alt="Syl app icon" />
+                <h1 class="title">Syl</h1>
             </div>
-            <p>A simple, free expense tracking app. Coming soon for iOS, iPadOS, and macOS.</p>
+            <p>A free expense tracking app. Coming soon for iOS, iPadOS, and macOS.</p>
             <a href="https://testflight.apple.com/join/RWj66HUZ">
                 <text>Download now on TestFlight</text>
             </a>
         </div>
 
         <div class="hero-image">
-            <img src={sageHero} class="responsive-image" alt="sage on ios"/>
+            <img src={sageHero} class="responsive-image" alt="syl on ios"/>
         </div>
     </div>
 
@@ -128,7 +128,7 @@
     </section>
 
     <section class="footer">
-        <p><a href="/sage/privacy">Privacy Policy</a></p>
+        <p><a href="/syl/privacy">Privacy Policy</a></p>
     </section>
 </main>
 
