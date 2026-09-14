@@ -7,8 +7,8 @@ const staticRoutes = [
 	{ path: '/blog', priority: '0.8', changefreq: 'weekly' },
 	{ path: '/photos', priority: '0.7', changefreq: 'monthly' },
 	{ path: '/projects', priority: '0.7', changefreq: 'monthly' },
-	{ path: '/sage', priority: '0.6', changefreq: 'monthly' },
-	{ path: '/sage/privacy', priority: '0.3', changefreq: 'yearly' }
+	{ path: '/syl', priority: '0.6', changefreq: 'monthly' },
+	{ path: '/syl/privacy', priority: '0.3', changefreq: 'yearly' }
 ];
 
 export const prerender = true;
