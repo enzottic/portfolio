@@ -18,15 +18,12 @@
         noindex?: boolean;
     } = $props();
 
-    const fullTitle = $derived(
-        title === SITE_NAME ? title : `${title} · ${SITE_NAME}`
-    );
     const canonicalUrl = $derived(new URL(page.url.pathname, SITE_URL).href);
     const ogImage = $derived(image ? new URL(image, SITE_URL).href : undefined);
 </script>
 
 <svelte:head>
-    <title>{fullTitle}</title>
+    <title>enzo</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalUrl} />
     <link rel="stylesheet" href="https://use.typekit.net/sdo3luh.css">

@@ -18,7 +18,7 @@
         </div>
         <div class="hero-right">
             <h2>Hi! I'm Enzo.</h2>
-            <p>I'm a full time software engineer and hobbyist photographer. I'm currently working on an expense tracking app called <a href="/syl">Syl</a>.</p>
+            <p>I'm a full time software engineer and hobbyist photographer. I'm currently working on an expense tracking app called <a href="https://getsyl.app">Syl</a>.</p>
             <div class="socials">
                 <div class="social-icon">
                     <a href="https://bsky.app/profile/enzo.social" target="_blank" rel="noopener noreferrer">
@@ -129,7 +129,7 @@
         gap: 20px;
     }
 
-    @media (max-width: 1100px) {
+    @media (max-width: 700px) {
         .hero-layout {
             grid-template-columns: 1fr;
             justify-items: center;
