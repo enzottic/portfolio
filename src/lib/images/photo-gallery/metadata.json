@@ -29,6 +29,11 @@
     "camera": "Fujifilm X100VI",
     "alt": "Waves wash onto a sandy beach below eroded cliffs, with a few people walking toward the Golden Gate Bridge in the distance."
   },
+  "hamptonbeach": {
+    "location": "Hampton Beach, NH",
+    "camera": "Fujifilm X100VI",
+    "alt": "Wide shot of an empty beach with two people walking"
+  },
   "java": {
     "location": "Boulder, CO",
     "camera": "Canon EOS R6 II",
@@ -38,6 +43,11 @@
     "location": "Highland, IL",
     "camera": "Fujifilm X100VI",
     "alt": "An overgrown backyard with a raised garden bed, red flowering shrubs, an old radiator panel and a scrap-metal sculpture beside a wooden deck."
+  },
+  "bostonbuilding": {
+    "location": "Boston, MA",
+    "camera": "Fujifilm X100VI",
+    "alt": "Architecture shot of a building at sunset"
   },
   "lights": {
     "location": "Boulder, CO",
@@ -57,7 +67,7 @@
   "plant": {
     "location": "Colorado Springs, CO",
     "camera": "Fujifilm X100VI",
-    "alt": "Top-down view of a fuzzy, silvery-green mullein rosette dusted with tiny water droplets, with blades of grass poking through."
+    "alt": "Top-down view of a fuzzy, silvery-green leaf spotted with tiny water droplets, with blades of grass poking through."
   },
   "rockymountain": {
     "location": "Rocky Mountain National Park, CO",
