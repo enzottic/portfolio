@@ -17,7 +17,7 @@
         preview?: string;
     };
 
-    const building: Row[] = [
+    const making: Row[] = [
         {
             title: 'Syl',
             description: 'Expense tracking app',
@@ -60,45 +60,6 @@
             href: `/blog/${post.slug}`
         }))
     );
-
-    // --- Hover preview: the image resolves from chunky pixels, like the GIF above. ---
-    const MAX_SIDE = 300;
-    const STEPS = [6, 12, 22, 40, 72];
-    const STEP_MS = 55;
-
-    let canvas: HTMLCanvasElement;
-    let shown = $state(false);
-    let box = $state({ w: 0, h: 0 });
-    let pos = $state({ x: 0, y: 0 });
-    let run = 0;
-    const loaded = new Map<string, HTMLImageElement>();
-
-    const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
-
-    function loadImage(src: string) {
-        return new Promise<HTMLImageElement>((resolve, reject) => {
-            const cached = loaded.get(src);
-            if (cached) return resolve(cached);
-            const image = new Image();
-            image.onload = () => {
-                loaded.set(src, image);
-                resolve(image);
-            };
-            image.onerror = reject;
-            image.src = src;
-        });
-    }
-
-    function place(event: PointerEvent) {
-        const gap = 24;
-        let x = event.clientX + gap;
-        if (x + box.w > window.innerWidth - 12) x = event.clientX - gap - box.w;
-        const y = Math.min(
-            Math.max(12, event.clientY - box.h / 2),
-            window.innerHeight - box.h - 12
-        );
-        pos = { x, y };
-    }
 </script>
 
 <Seo
@@ -140,9 +101,15 @@
         <div>
             <h1>Enzo</h1>
             <p class="contact">
-                <a href="https://bsky.app/profile/enzo.social" target="_blank" rel="noopener noreferrer">Bluesky</a>
-                <a href="https://github.com/enzottic" target="_blank" rel="noopener noreferrer">GitHub</a>
-                <a href="mailto:mail@enzottic.me">Email</a>
+                <a href="https://bsky.app/profile/enzo.social" target="_blank" rel="noopener noreferrer" aria-label="Bluesky" title="Bluesky">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.335 5.144c-1.654 -1.199 -4.335 -2.127 -4.335 .826c0 .59 .35 4.953 .556 5.661c.713 2.463 3.13 2.75 5.444 2.369c-4.045 .665 -4.889 3.208 -2.667 5.41c1.03 1.018 1.913 1.59 2.667 1.59c2 0 3.134 -2.769 3.5 -3.5c.333 -.667 .5 -1.167 .5 -1.5c0 .333 .167 .833 .5 1.5c.366 .731 1.5 3.5 3.5 3.5c.754 0 1.637 -.571 2.667 -1.59c2.222 -2.203 1.378 -4.746 -2.667 -5.41c2.314 .38 4.73 .094 5.444 -2.369c.206 -.708 .556 -5.072 .556 -5.661c0 -2.953 -2.68 -2.025 -4.335 -.826c-2.293 1.662 -4.76 5.048 -5.665 6.856c-.905 -1.808 -3.372 -5.194 -5.665 -6.856z" /></svg>
+                </a>
+                <a href="https://github.com/enzottic" target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" /></svg>
+                </a>
+                <a href="mailto:mail@enzottic.me" aria-label="Email" title="Email">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z" /><path d="M3 7l9 6l9 -6" /></svg>
+                </a>
             </p>
         </div>
     </header>
@@ -152,7 +119,7 @@
         expense tracking app called <a href="https://getsyl.app">Syl</a>.
     </p>
 
-    {@render rows('Making', building, 2)}
+    {@render rows('Making', making, 2)}
     {@render rows('Projects', projects, 3)}
     {#if writing.length > 0}
         {@render rows('Writing', writing, 4)}
@@ -175,14 +142,6 @@
         </section>
     {/if}
 </main>
-
-<canvas
-    class="preview"
-    class:shown
-    bind:this={canvas}
-    aria-hidden="true"
-    style="width: {box.w}px; height: {box.h}px; transform: translate3d({pos.x}px, {pos.y}px, 0);"
-></canvas>
 
 <style>
     main {
@@ -237,13 +196,25 @@
     .contact {
         display: flex;
         gap: 0.875rem;
-        margin: 0.125rem 0 0;
-        font-size: 0.875rem;
+        margin: 0.375rem 0 0;
     }
 
     .contact a {
+        display: inline-flex;
         color: var(--muted);
         text-decoration: none;
+        transition: color 0.15s ease;
+    }
+
+    .contact svg {
+        display: block;
+        width: 18px;
+        height: 18px;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 1.75;
+        stroke-linecap: round;
+        stroke-linejoin: round;
     }
 
     .contact a:hover {
@@ -324,13 +295,11 @@
             color: var(--fg);
         }
 
-        /* Dim the neighbours so the hovered row reads as selected. */
         .rows:hover .row:not(:hover) {
             opacity: 0.5;
         }
     }
 
-    /* Photo strip */
     .strip {
         display: grid;
         grid-template-columns: repeat(5, 1fr);
@@ -366,27 +335,6 @@
         .strip :global(picture:hover img) {
             transform: scale(1.04);
         }
-    }
-
-    /* Hover preview */
-    .preview {
-        position: fixed;
-        top: 0;
-        left: 0;
-        z-index: 20;
-        pointer-events: none;
-        border-radius: 10px;
-        border: 1px solid var(--line);
-        background-color: var(--hover);
-        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
-        image-rendering: pixelated;
-        opacity: 0;
-        visibility: hidden;
-    }
-
-    .preview.shown {
-        opacity: 1;
-        visibility: visible;
     }
 
     @media (prefers-reduced-motion: reduce) {

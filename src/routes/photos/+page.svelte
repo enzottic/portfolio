@@ -5,7 +5,7 @@
 
 <Seo
     title="Photos"
-    description="A gallery of photography."
+    description="Photo gallery for enzottic.me"
 />
 
 <main>

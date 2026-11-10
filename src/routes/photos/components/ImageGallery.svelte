@@ -21,12 +21,15 @@
     const fadeIn = (node: HTMLElement) => {
         const img = node.querySelector('img')
         if (!img) return
+
         const done = () => node.classList.add('loaded')
+
         if (img.complete && img.naturalWidth > 0) {
             node.classList.add('instant')
             done()
             return
         }
+
         img.addEventListener('load', done, { once: true })
         img.addEventListener('error', done, { once: true })
         return () => {
