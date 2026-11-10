@@ -1,5 +1,6 @@
 <script lang="ts">
     import enzoGif from '$lib/assets/enzo.gif';
+    import enzoClosedGif from '$lib/assets/enzo-closed.gif';
     import Seo from '$lib/components/Seo.svelte';
 
     let { data } = $props();
@@ -139,7 +140,10 @@
 
 <main>
     <header class="rise" style="--i: 0">
-        <img class="avatar" src={enzoGif} alt="" />
+        <span class="avatar">
+            <img src={enzoGif} alt="" />
+            <img class="avatar-hover" src={enzoClosedGif} alt="" />
+        </span>
         <div>
             <h1>Enzo</h1>
             <p class="contact">
@@ -197,10 +201,31 @@
     }
 
     .avatar {
+        position: relative;
         display: block;
+        flex-shrink: 0;
         width: 88px;
+    }
+
+    .avatar img {
+        display: block;
+        width: 100%;
         height: auto;
         image-rendering: pixelated;
+    }
+
+    .avatar .avatar-hover {
+        position: absolute;
+        inset: 0;
+        visibility: hidden;
+    }
+
+    .avatar:hover img:first-child {
+        visibility: hidden;
+    }
+
+    .avatar:hover .avatar-hover {
+        visibility: visible;
     }
 
     h1 {
