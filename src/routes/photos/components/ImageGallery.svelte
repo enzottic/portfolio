@@ -2,6 +2,7 @@
 <script>
     // @ts-nocheck
 
+    import { onMount } from "svelte";
     import ImageModal from "./ImageModal.svelte";
 
     const imageModules = import.meta.glob('$lib/images/photo-gallery/*.{jpg,jpeg}', {
@@ -23,6 +24,19 @@
         modalShown = false
         selectedImage = null
     }
+
+    // CSS columns decide where each photo lands, so the stagger order is measured
+    // after layout: photos higher on the page come in first, left before right on ties.
+    let grid
+    let ready = $state(false)
+
+    onMount(() => {
+        const items = [...grid.querySelectorAll('.grid-item')]
+        const placed = items.map((el) => ({ el, rect: el.getBoundingClientRect() }))
+        placed.sort((a, b) => a.rect.top - b.rect.top || a.rect.left - b.rect.left)
+        placed.forEach(({ el }, rank) => el.style.setProperty('--i', String(Math.min(rank, 10))))
+        ready = true
+    })
 </script>
 
 <main>
@@ -32,14 +46,15 @@
         closeHandler={handleModalClose}
     />
 
-    <div class="grid">
+    <div class="grid" class:ready bind:this={grid}>
         {#each Object.entries(imageModules) as [_path, module]}
-            <enhanced:img
-                class="grid-image"
-                src={module.default}
-                alt="idk"
-                on:click={() => handleImageClick(module.default)}
-            />
+            <div class="grid-item rise">
+                <enhanced:img
+                    src={module.default}
+                    alt="idk"
+                    on:click={() => handleImageClick(module.default)}
+                />
+            </div>
         {/each}
     </div>
 </main>
@@ -49,31 +64,24 @@
     .grid {
         --gap: 1em;
         --columns: 2;
+        /* CSS columns fill top-to-bottom, so the load-in cascades down the left column, then the right. */
         margin: 0 auto;
-        display: column;
         columns: var(--columns);
         gap: var(--gap);
     }
 
-    .grid-image {
+    /* Hold the load-in until the order above has been measured. */
+    .grid:not(.ready) .grid-item {
+        animation-play-state: paused;
+    }
+
+    .grid-item {
         break-inside: avoid;
         padding-bottom: var(--gap);
     }
 
-    @supports(grid-template-rows: masonry) {
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(var(--columns), 1fr);
-            grid-template-rows: masonry;
-        }
-
-        .grid > * {
-            margin-bottom: 0em;
-        }
-    }
-
     /* fallback to 1 column when viewing on a phone */
-    @media (max-width: 1500px) {
+    @media (max-width: 480px) {
         .grid {
             --columns: 1;
         }
@@ -86,7 +94,8 @@
     }*/
 
     img {
-        max-width: 100%;
+        display: block;
+        width: 100%;
         height: auto;
     }
 

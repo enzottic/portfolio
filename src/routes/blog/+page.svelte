@@ -8,14 +8,14 @@
 />
 
 <main>
-    <h1>Posts</h1>
+    <h1 class="rise" style="--i: 0">Posts</h1>
 
     {#if data.posts.length === 0}
-        <p>No posts yet.</p>
+        <p class="rise" style="--i: 1">No posts yet.</p>
     {:else}
         <ul class="post-list">
-            {#each data.posts as post (post.slug)}
-                <li class="post-item">
+            {#each data.posts as post, index (post.slug)}
+                <li class="post-item rise" style="--i: {Math.min(index + 1, 10)}">
                     <a href={`/blog/${post.slug}`}>
                         <h2>{post.title}</h2>
                         <time datetime={post.date}>
@@ -40,38 +40,48 @@
     .post-list {
         list-style: none;
         padding: 0;
-        margin: 2rem 0;
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
+        margin: 1.5rem -0.625rem 4rem;
     }
 
     .post-item a {
-        display: block;
-        padding: 1.25rem 1.5rem;
-        background-color: #2c292a;
-        border-radius: 12px;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        column-gap: 1rem;
+        align-items: baseline;
+        padding: 0.75rem 0.625rem;
+        border-radius: 8px;
         text-decoration: none;
-        color: inherit;
-        transition: background-color 0.2s ease, transform 0.2s ease;
-    }
-
-    .post-item a:hover {
-        background-color: #3a3739;
-        transform: translateY(-2px);
+        color: var(--fg);
+        transition: background-color 0.15s ease, opacity 0.2s ease;
     }
 
     .post-item h2 {
-        margin: 0 0 0.25rem;
-        color: #c669d8;
+        margin: 0;
+        font-size: 1rem;
+        font-weight: 400;
     }
 
     .post-item time {
+        color: var(--faint);
         font-size: 0.875rem;
-        opacity: 0.7;
+        font-variant-numeric: tabular-nums;
+        white-space: nowrap;
     }
 
     .post-item p {
-        margin: 0.5rem 0 0;
+        grid-column: 1 / -1;
+        margin: 0.125rem 0 0;
+        color: var(--muted);
+        font-size: 0.875rem;
+    }
+
+    @media (hover: hover) {
+        .post-item a:hover {
+            background-color: var(--hover);
+        }
+
+        .post-list:hover .post-item a:not(:hover) {
+            opacity: 0.5;
+        }
     }
 </style>

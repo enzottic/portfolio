@@ -48,7 +48,7 @@
 
     <h1>Projects</h1>
 
-    <h2>Loopover</h2>
+    <h2 id="loopover">Loopover</h2>
 
     <p>Winner of Best Beginner Hack at <a href="https://devpost.com/software/loopover">HackCU 10</a></p>
 
@@ -66,7 +66,7 @@
         {/each}
     </div>
 
-    <h2>Lexel</h2>
+    <h2 id="lexel">Lexel</h2>
     <p>A spaced-repetition based language learning app that lets you learn by reading what you care about. Built with SwiftUI and Google's ML Kit.</p>
     <a href="https://github.com/typicel/Lexel">View on Github</a>
 
@@ -82,32 +82,40 @@
 </main>
 
 <style>
+    /* enhanced:img renders <picture><img>, so target both through :global */
+    .demo-images {
+        display: flex;
+        gap: 16px;
+        align-items: flex-start;
+        margin-top: 20px;
+    }
 
-    .demo-images img {
-        border-radius: 10px;
-        width: 300px;
+    .demo-images :global(picture) {
+        flex: 1 1 0;
+        min-width: 0;
+    }
+
+    .demo-images :global(img) {
+        display: block;
+        width: 100%;
         height: auto;
+        border-radius: 10px;
         cursor: pointer;
         transform: scale(1);
         transition: transform 0.3s ease;
     }
 
-    .demo-images img:hover {
+    .demo-images :global(img:hover) {
         transform: scale(1.02);
     }
 
-    .demo-images {
-        display: flex;
-        gap: 20px;
-        justify-content: center;
-        margin-top: 20px;
-    }
-
-    @media (max-width: 1000px) {
+    @media (max-width: 480px) {
         .demo-images {
             flex-direction: column;
-            align-items: center;
+        }
+
+        .demo-images :global(picture) {
+            width: 100%;
         }
     }
-
 </style>
