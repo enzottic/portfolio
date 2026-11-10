@@ -52,6 +52,7 @@
 <main>
     <ImageModal
         image={selected?.photo.picture}
+        meta={selected?.photo.meta}
         placeholder={selected?.preview}
         shown={selected !== null}
         closeHandler={handleModalClose}
@@ -67,7 +68,7 @@
                 >
                     <enhanced:img
                         src={photo.picture}
-                        alt=""
+                        alt={photo.meta?.alt ?? ''}
                         sizes="(max-width: 480px) calc(100vw - 32px), 302px"
                         loading={index < 4 ? 'eager' : 'lazy'}
                         fetchpriority={index < 2 ? 'high' : 'auto'}

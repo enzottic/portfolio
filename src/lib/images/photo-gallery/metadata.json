@@ -1,46 +1,67 @@
-[
+{
+  "bay": {
+    "location": "San Francisco, CA",
+    "camera": "Fujifilm X100VI",
+    "alt": "Two hikers on a dirt trail through coastal scrub near Battery Boyd, with the Golden Gate Bridge's red tower rising over the bay under a cloudy sky."
+  },
   "alcatraz": {
-    "location": "Alcatraz Island, San Francisco, CA"
-    "camera": "Fujifilm X100VI"
+    "location": "Alcatraz Island, San Francisco, CA",
+    "camera": "Fujifilm X100VI",
+    "alt": "A lone person in a dark jacket walks across the empty concrete recreation yard of Alcatraz, surrounded by tall walls, with the hazy bay and hills beyond."
   },
   "birds": {
-    "location": "Alcatraz Island, San Francisco, CA"
-    "camera": "Fujifilm X100VI"
+    "location": "Alcatraz Island, San Francisco, CA",
+    "camera": "Fujifilm X100VI",
+    "alt": "Hundreds of dark cormorants crowd a guano-covered ledge and ruined wall on Alcatraz, with turquoise bay water behind them."
   },
   "collapsed": {
-    "location": "Highland, IL"
-    "camera": "Fujifilm X100VI"
+    "location": "Highland, IL",
+    "camera": "Fujifilm X100VI",
+    "alt": "A collapsed barn of rusted corrugated metal and splintered timber, piled with cinder blocks and an old satellite dish, under fresh spring leaves."
   },
   "droplets": {
-    "location": "Colorado Springs, CO"
-    "camera": "Fujifilm X100VI"
+    "location": "Colorado Springs, CO",
+    "camera": "Fujifilm X100VI",
+    "alt": "Close-up of round water droplets beaded along a blade of green grass, against a soft, dark green background."
+  },
+  "baybeach": {
+    "location": "San Francisco, CA",
+    "camera": "Fujifilm X100VI",
+    "alt": "Waves wash onto a sandy beach below eroded cliffs, with a few people walking toward the Golden Gate Bridge in the distance."
   },
   "java": {
-    "location": "Boulder, CO"
-    "camera": "Canon EOS R6 II"
+    "location": "Boulder, CO",
+    "camera": "Canon EOS R6 II",
+    "alt": "Portrait of an orange tabby kitten with big ears and blue-green eyes, looking straight at the camera."
   },
   "junk": {
-    "location": "Highland, IL"
-    "camera": "Fujifilm X100VI"
+    "location": "Highland, IL",
+    "camera": "Fujifilm X100VI",
+    "alt": "An overgrown backyard with a raised garden bed, red flowering shrubs, an old radiator panel and a scrap-metal sculpture beside a wooden deck."
   },
   "lights": {
-    "location": "Boulder, CO"
-    "camera": "Fujifilm X100VI"
+    "location": "Boulder, CO",
+    "camera": "Fujifilm X100VI",
+    "alt": "Black-and-white night shot of a dark building facade along an empty street, with a single light picking out the pipes of a standpipe valve."
   },
   "mountain": {
-    "location": "Rocky Mountain National Park, CO"
-    "camera": "Fujifilm X100VI"
+    "location": "Rocky Mountain National Park, CO",
+    "camera": "Fujifilm X100VI",
+    "alt": "A partly thawed pond in the snow, ringed by pine forest, beneath a snow-capped rocky peak and blue sky."
   },
   "pizza": {
-    "location": "San Francisco, CA"
-    "camera": "Fujifilm X100VI"
+    "location": "San Francisco, CA",
+    "camera": "Fujifilm X100VI",
+    "alt": "A red Pasquale's Pizzeria Restaurant sign on a street corner, with a striped awning, tangled power lines and Victorian houses behind."
   },
   "plant": {
-    "location": "Colorado Springs, CO"
-    "camera": "Fujifilm X100VI"
+    "location": "Colorado Springs, CO",
+    "camera": "Fujifilm X100VI",
+    "alt": "Top-down view of a fuzzy, silvery-green mullein rosette dusted with tiny water droplets, with blades of grass poking through."
   },
   "rockymountain": {
-    "location": "Rocky Mountain National Park, CO"
-    "camera": "Fujifilm X100VI"
+    "location": "Rocky Mountain National Park, CO",
+    "camera": "Fujifilm X100VI",
+    "alt": "A calm mountain lake reflecting the sky, with a hiker on the rocky shore and snow-capped peaks rising beyond a pine forest."
   }
-]
+}

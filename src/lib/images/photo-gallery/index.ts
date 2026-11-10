@@ -16,6 +16,10 @@ const placeholders = import.meta.glob<{ default: string }>('./*.{jpg,jpeg}', {
 	query: { w: '24', format: 'webp', quality: '50', inline: '' }
 });
 
+import metadata from './metadata.json';
+
+export type PhotoMeta = { location: string; camera: string; alt: string };
+
 export type Picture = {
 	sources: Record<string, string>;
 	img: { src: string; w: number; h: number };
@@ -25,10 +29,13 @@ export type Photo = {
 	path: string;
 	picture: Picture;
 	placeholder: string;
+	meta?: PhotoMeta;
 };
 
 export const photos: Photo[] = Object.entries(pictures).map(([path, module]) => ({
 	path,
 	picture: module.default,
-	placeholder: placeholders[path].default
+	placeholder: placeholders[path].default,
+	// './alcatraz.jpg' -> 'alcatraz'
+	meta: (metadata as Record<string, PhotoMeta>)[path.replace(/^\.\/(.*)\.jpe?g$/, '$1')]
 }));
