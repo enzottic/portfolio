@@ -1,6 +1,7 @@
 <script lang="ts">
     import enzoGif from '$lib/assets/enzo.gif';
     import enzoClosedGif from '$lib/assets/enzo-closed.gif';
+    import sylIcon from '$lib/assets/syl-icon-dark.png';
     import Seo from '$lib/components/Seo.svelte';
     import { photos } from '$lib/images/photo-gallery';
 
@@ -15,11 +16,13 @@
         href: string;
         external?: boolean;
         preview?: string;
+        icon?: string;
     };
 
     const making: Row[] = [
         {
             title: 'Syl',
+            icon: sylIcon,
             description: 'Expense tracking app',
             meta: 'Now',
             href: 'https://getsyl.app',
@@ -74,10 +77,14 @@
                 <li>
                     <a
                         class="row"
+                        class:has-icon={item.icon}
                         href={item.href}
                         target={item.external ? '_blank' : undefined}
                         rel={item.external ? 'noopener noreferrer' : undefined}
                     >
+                        {#if item.icon}
+                            <img class="row-icon" src={item.icon} alt="" width="40" height="40" />
+                        {/if}
                         <span class="row-title">
                             {item.title}{#if item.external}<span class="arrow" aria-hidden="true">↗</span>{/if}
                         </span>
@@ -256,6 +263,18 @@
         color: var(--fg);
         text-decoration: none;
         transition: background-color 0.15s ease, opacity 0.2s ease;
+    }
+
+    /* App icon beside the title, at 40px; the export
+       already includes the iOS rounded mask. */
+    .row.has-icon {
+        align-items: center;
+    }
+
+    .row-icon {
+        flex: none;
+        width: 40px;
+        height: 40px;
     }
 
     .row-title {
