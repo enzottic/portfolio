@@ -20,6 +20,14 @@
     function closeModal() {
         props.closeHandler()
     }
+
+    // Known up front from the build, so the frame can take its final size
+    // before the full image downloads and the caption never jumps.
+    const aspect = $derived(
+        props.image && typeof props.image !== 'string'
+            ? props.image.img.w / props.image.img.h
+            : null
+    )
 </script>
 
 {#if props.shown}
@@ -35,7 +43,7 @@
     >
         {#if props.image}
             <button class="close-button" onclick={closeModal} onkeydown={(e) => { if (e.key === 'Enter' || e.key === ' ') closeModal(); }}>x</button>
-            <figure class="photo">
+            <figure class="photo" class:sized={aspect !== null} style:--aspect={aspect}>
                 <enhanced:img
                     src={props.image}
                     alt={props.meta?.alt ?? ''}
@@ -101,6 +109,19 @@
         object-fit: contain;
         /* The preview sits underneath, stretched to the same box, until the full image paints over it. */
         background-size: 100% 100%;
+    }
+
+    /* Reserve the photo's final box (fit within 100vw × 80vh) with a grey
+       placeholder, so the caption sits in its final spot from the first frame. */
+    .photo.sized {
+        width: min(100vw, calc(80vh * var(--aspect)));
+        aspect-ratio: var(--aspect);
+        background-color: #3a3a3c;
+    }
+
+    .photo.sized :global(img) {
+        width: 100%;
+        height: 100%;
     }
 
     /* Liquid-glass panel: a frosted, slightly brightened copy of the photo behind it,
