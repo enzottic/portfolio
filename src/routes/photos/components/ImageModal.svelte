@@ -1,8 +1,16 @@
 <script lang="ts">
     import { fade } from 'svelte/transition'
 
+    type Picture = {
+        sources: Record<string, string>;
+        img: { src: string; w: number; h: number };
+    }
+
     let props = $props<{
-        image: string,
+        image?: Picture | string | null,
+        // An already-loaded image (e.g. the grid thumbnail) to show while the
+        // full-size version downloads.
+        placeholder?: string,
         shown: boolean,
         closeHandler: () => void
     }>()
@@ -25,20 +33,18 @@
     >
         {#if props.image}
             <button class="close-button" onclick={closeModal} onkeydown={(e) => { if (e.key === 'Enter' || e.key === ' ') closeModal(); }}>x</button>
-            <enhanced:img src={props.image} />
+            <enhanced:img
+                src={props.image}
+                alt=""
+                sizes="100vw"
+                style:background-image={props.placeholder ? `url(${props.placeholder})` : undefined}
+            />
         {/if}
     </div>
 </main>
 {/if}
 
 <style>
-    .tile1 {
-        width: 120px;
-        height: 120px;
-        background: url(props.image);
-        background-position: left top;
-    }
-
     .modal-backdrop {
         position: fixed;
         top: 0;
@@ -69,9 +75,13 @@
         justify-content: center;
     }
 
-    img {
+    .modal-backdrop :global(img) {
         max-width: 100%;
         max-height: 80vh;
+        width: auto;
+        height: auto;
         object-fit: contain;
+        /* The preview sits underneath, stretched to the same box, until the full image paints over it. */
+        background-size: 100% 100%;
     }
 </style>

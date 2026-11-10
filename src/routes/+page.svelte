@@ -2,18 +2,11 @@
     import enzoGif from '$lib/assets/enzo.gif';
     import enzoClosedGif from '$lib/assets/enzo-closed.gif';
     import Seo from '$lib/components/Seo.svelte';
+    import { photos } from '$lib/images/photo-gallery';
 
     let { data } = $props();
 
-    type Picture = { img: { src: string; w: number; h: number } };
-
-    const photoModules = import.meta.glob<{ default: string }>(
-        '$lib/images/photo-gallery/*.{jpg,jpeg}',
-        { eager: true, query: { enhanced: true } }
-    );
-    const strip = Object.entries(photoModules)
-        .slice(0, 5)
-        .map(([path, module]) => ({ path, src: module.default }));
+    const strip = photos.slice(0, 5);
 
     type Row = {
         title: string;
@@ -170,7 +163,13 @@
             <h2>Photos</h2>
             <a class="strip" href="/photos" aria-label="Open the photo gallery">
                 {#each strip as photo (photo.path)}
-                    <enhanced:img src={photo.src} alt="" sizes="140px" loading="lazy" />
+                    <enhanced:img
+                        src={photo.picture}
+                        alt=""
+                        sizes="140px"
+                        loading="lazy"
+                        style:background-image="url({photo.placeholder})"
+                    />
                 {/each}
             </a>
         </section>
@@ -353,6 +352,8 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
+        background-size: cover;
+        background-position: center;
         opacity: 0.85;
         transition: opacity 0.2s ease, transform 0.4s ease;
     }

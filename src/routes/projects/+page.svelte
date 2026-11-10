@@ -9,7 +9,7 @@
         '$lib/images/project-images/loopover/*.{jpg,jpeg,png}',
         {
             eager: true,
-            query: { enhanced: true }
+            query: { enhanced: true, w: '1600;1000;600;400' }
         }
     );
 
@@ -17,21 +17,24 @@
         '$lib/images/project-images/lexel/*.{jpg,jpeg,png}',
         {
             eager: true,
-            query: { enhanced: true }
+            query: { enhanced: true, w: '1600;1000;600;400' }
         }
     );
 
     let modalShown = $state(false);
     let selectedImage = $state<string>('');
+    let selectedPreview = $state<string>('');
 
-    const handleImageClick = (image: string) => {
+    const handleImageClick = (image: string, event: MouseEvent) => {
         modalShown = true;
         selectedImage = image;
+        selectedPreview = (event.currentTarget as HTMLImageElement).currentSrc;
     };
 
     const handleModalClose = () => {
         modalShown = false;
         selectedImage = '';
+        selectedPreview = '';
     };
 </script>
 
@@ -42,6 +45,7 @@
 <main>
     <ImageModal
         image={selectedImage}
+        placeholder={selectedPreview}
         shown={modalShown}
         closeHandler={handleModalClose}
     />
@@ -59,9 +63,11 @@
 <!-- insert image -->
     <div class = "demo-images">
         {#each Object.entries(loopoverImages) as [_path, module]}
-            <enhanced:img 
-                src={module.default} 
-                on:click={() => handleImageClick(module.default)}
+            <enhanced:img
+                src={module.default}
+                alt=""
+                sizes="(max-width: 480px) calc(100vw - 32px), 300px"
+                onclick={(event: MouseEvent) => handleImageClick(module.default, event)}
             />
         {/each}
     </div>
@@ -72,9 +78,11 @@
 
     <div class="demo-images">
         {#each Object.entries(lexelImages) as [_path, module]}
-            <enhanced:img 
-                src={module.default} 
-                on:click={() => handleImageClick(module.default)}
+            <enhanced:img
+                src={module.default}
+                alt=""
+                sizes="(max-width: 480px) calc(100vw - 32px), 300px"
+                onclick={(event: MouseEvent) => handleImageClick(module.default, event)}
             />
         {/each}
     </div>

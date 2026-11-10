@@ -1,37 +1,47 @@
-
-<script>
-    // @ts-nocheck
-
+<script lang="ts">
     import { onMount } from "svelte";
     import ImageModal from "./ImageModal.svelte";
+    import { photos, type Photo } from "$lib/images/photo-gallery";
 
-    const imageModules = import.meta.glob('$lib/images/photo-gallery/*.{jpg,jpeg}', {
-        eager: true,
-        query: {
-            enhanced: true
-        }
-    })
+    let selected = $state<{ photo: Photo; preview: string } | null>(null)
 
-    let modalShown = $state(false)
-    let selectedImage = $state(null)
-
-    const handleImageClick = (image) => {
-        modalShown = true
-        selectedImage = image
+    const handleImageClick = (photo: Photo, event: MouseEvent) => {
+        // Hand the modal whatever the browser already downloaded for the grid,
+        // so it can show that instantly while the larger version loads.
+        const preview = (event.currentTarget as HTMLImageElement).currentSrc || photo.placeholder
+        selected = { photo, preview }
     }
 
     const handleModalClose = () => {
-        modalShown = false
-        selectedImage = null
+        selected = null
+    }
+
+    // Fade each photo in once it has decoded, over its blurred placeholder.
+    // Images that finished before hydration (e.g. from cache) show immediately.
+    const fadeIn = (node: HTMLElement) => {
+        const img = node.querySelector('img')
+        if (!img) return
+        const done = () => node.classList.add('loaded')
+        if (img.complete && img.naturalWidth > 0) {
+            node.classList.add('instant')
+            done()
+            return
+        }
+        img.addEventListener('load', done, { once: true })
+        img.addEventListener('error', done, { once: true })
+        return () => {
+            img.removeEventListener('load', done)
+            img.removeEventListener('error', done)
+        }
     }
 
     // CSS columns decide where each photo lands, so the stagger order is measured
     // after layout: photos higher on the page come in first, left before right on ties.
-    let grid
+    let grid: HTMLDivElement
     let ready = $state(false)
 
     onMount(() => {
-        const items = [...grid.querySelectorAll('.grid-item')]
+        const items = [...grid.querySelectorAll<HTMLElement>('.grid-item')]
         const placed = items.map((el) => ({ el, rect: el.getBoundingClientRect() }))
         placed.sort((a, b) => a.rect.top - b.rect.top || a.rect.left - b.rect.left)
         placed.forEach(({ el }, rank) => el.style.setProperty('--i', String(Math.min(rank, 10))))
@@ -41,19 +51,30 @@
 
 <main>
     <ImageModal
-        image={selectedImage}
-        shown={modalShown}
+        image={selected?.photo.picture}
+        placeholder={selected?.preview}
+        shown={selected !== null}
         closeHandler={handleModalClose}
     />
 
     <div class="grid" class:ready bind:this={grid}>
-        {#each Object.entries(imageModules) as [_path, module]}
+        {#each photos as photo, index (photo.path)}
             <div class="grid-item rise">
-                <enhanced:img
-                    src={module.default}
-                    alt="idk"
-                    on:click={() => handleImageClick(module.default)}
-                />
+                <div
+                    class="frame"
+                    style:background-image="url({photo.placeholder})"
+                    {@attach fadeIn}
+                >
+                    <enhanced:img
+                        src={photo.picture}
+                        alt=""
+                        sizes="(max-width: 480px) calc(100vw - 32px), 302px"
+                        loading={index < 4 ? 'eager' : 'lazy'}
+                        fetchpriority={index < 2 ? 'high' : 'auto'}
+                        decoding="async"
+                        onclick={(event: MouseEvent) => handleImageClick(photo, event)}
+                    />
+                </div>
             </div>
         {/each}
     </div>
@@ -87,25 +108,37 @@
         }
     }
 
-    /*@media (max-width: 1500px) {
-        .grid {
-            --columns: 2;
-        }
-    }*/
+    /* The blurred placeholder fills the photo's box until the real image arrives. */
+    .frame {
+        background-size: cover;
+        background-position: center;
+    }
 
-    img {
+    .frame :global(img) {
         display: block;
         width: 100%;
         height: auto;
+        opacity: 0;
+        transform: scale(1);
+        transition: opacity 0.4s ease, transform 0.3s ease;
     }
 
-    img {
-        transform: scale(1);
+    .frame:global(.loaded) :global(img) {
+        opacity: 1;
+    }
+
+    .frame:global(.instant) :global(img) {
         transition: transform 0.3s ease;
     }
 
-    img:hover {
+    .frame :global(img:hover) {
         transform: scale(1.02);
         cursor: pointer;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .frame :global(img) {
+            transition: none;
+        }
     }
 </style>
