@@ -38,7 +38,24 @@
         }
     }
 
-    // CSS columns decide where each photo lands, so the stagger order is measured
+    // Masonry that reads left to right: each photo goes into whichever column is
+    // currently shorter, so the 1st and 2nd photos sit side by side, and so on.
+    // Heights are known up front from the image dimensions (as a multiple of the
+    // column width), plus a rough allowance for the gap below each photo.
+    const COLUMNS = 2
+    const GAP = 0.05
+    const columns = (() => {
+        const cols: { photo: Photo; index: number }[][] = Array.from({ length: COLUMNS }, () => [])
+        const heights = new Array(COLUMNS).fill(0)
+        photos.forEach((photo, index) => {
+            const shortest = heights.indexOf(Math.min(...heights))
+            cols[shortest].push({ photo, index })
+            heights[shortest] += photo.picture.img.h / photo.picture.img.w + GAP
+        })
+        return cols
+    })()
+
+    // Layout decides where each photo lands, so the stagger order is measured
     // after layout: photos higher on the page come in first, left before right on ties.
     let grid: HTMLDivElement
     let ready = $state(false)
@@ -62,8 +79,10 @@
     />
 
     <div class="grid" class:ready bind:this={grid}>
-        {#each photos as photo, index (photo.path)}
-            <div class="grid-item rise">
+        {#each columns as column}
+        <div class="column">
+        {#each column as { photo, index } (photo.path)}
+            <div class="grid-item rise" style:order={index}>
                 <div
                     class="frame"
                     style:background-image="url({photo.placeholder})"
@@ -81,6 +100,8 @@
                 </div>
             </div>
         {/each}
+        </div>
+        {/each}
     </div>
 </main>
 
@@ -88,11 +109,17 @@
 
     .grid {
         --gap: 1em;
-        --columns: 2;
-        /* CSS columns fill top-to-bottom, so the load-in cascades down the left column, then the right. */
         margin: 0 auto;
-        columns: var(--columns);
+        display: flex;
+        align-items: flex-start;
         gap: var(--gap);
+    }
+
+    .column {
+        flex: 1;
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
     }
 
     /* Hold the load-in until the order above has been measured. */
@@ -101,14 +128,18 @@
     }
 
     .grid-item {
-        break-inside: avoid;
         padding-bottom: var(--gap);
     }
 
-    /* fallback to 1 column when viewing on a phone */
+    /* On a phone, merge the columns into one list, back in metadata.json order. */
     @media (max-width: 480px) {
         .grid {
-            --columns: 1;
+            flex-direction: column;
+            align-items: stretch;
+        }
+
+        .column {
+            display: contents;
         }
     }
 
@@ -123,8 +154,8 @@
         width: 100%;
         height: auto;
         opacity: 0;
-        transform: scale(1);
-        transition: opacity 0.4s ease, transform 0.3s ease;
+        transition: opacity 0.4s ease;
+        cursor: pointer;
     }
 
     .frame:global(.loaded) :global(img) {
@@ -132,12 +163,7 @@
     }
 
     .frame:global(.instant) :global(img) {
-        transition: transform 0.3s ease;
-    }
-
-    .frame :global(img:hover) {
-        transform: scale(1.02);
-        cursor: pointer;
+        transition: none;
     }
 
     @media (prefers-reduced-motion: reduce) {

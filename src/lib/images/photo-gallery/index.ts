@@ -32,10 +32,23 @@ export type Photo = {
 	meta?: PhotoMeta;
 };
 
-export const photos: Photo[] = Object.entries(pictures).map(([path, module]) => ({
-	path,
-	picture: module.default,
-	placeholder: placeholders[path].default,
-	// './alcatraz.jpg' -> 'alcatraz'
-	meta: (metadata as Record<string, PhotoMeta>)[path.replace(/^\.\/(.*)\.jpe?g$/, '$1')]
-}));
+// './alcatraz.jpg' -> 'alcatraz'
+const nameOf = (path: string) => path.replace(/^\.\/(.*)\.jpe?g$/, '$1');
+
+// Photos appear in the order their entries are listed in metadata.json, so
+// reordering the gallery is just moving entries around in that file. Photos
+// with no entry yet go at the end, alphabetically.
+const order = Object.keys(metadata);
+const rank = (path: string) => {
+	const i = order.indexOf(nameOf(path));
+	return i === -1 ? Infinity : i;
+};
+
+export const photos: Photo[] = Object.entries(pictures)
+	.sort(([a], [b]) => rank(a) - rank(b) || a.localeCompare(b))
+	.map(([path, module]) => ({
+		path,
+		picture: module.default,
+		placeholder: placeholders[path].default,
+		meta: (metadata as Record<string, PhotoMeta>)[nameOf(path)]
+	}));

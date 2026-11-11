@@ -9,6 +9,16 @@
     "camera": "Fujifilm X100VI",
     "alt": "A lone person in a dark jacket walks across the empty concrete recreation yard of Alcatraz, surrounded by tall walls, with the hazy bay and hills beyond."
   },
+  "ducks": {
+    "location": "Rocky Mountain National Park, CO",
+    "camera": "Canon EOS R6 Mark II",
+    "alt": "A early-morning mountain landscape in Rocky Mountain National Park with a lake in the foreground. Ducks are swimming in the lake."
+  },
+  "golden": {
+    "location": "Rocky Mountain National Park, CO",
+    "camera": "Canon EOS R6 Mark II",
+    "alt": "A early-morning mountain landscape in Rocky Mountain National Park with a lake in the foreground."
+  },
   "birds": {
     "location": "Alcatraz Island, San Francisco, CA",
     "camera": "Fujifilm X100VI",
@@ -36,7 +46,7 @@
   },
   "java": {
     "location": "Boulder, CO",
-    "camera": "Canon EOS R6 II",
+    "camera": "Canon EOS R6 Mark II",
     "alt": "Portrait of an orange tabby kitten with big ears and blue-green eyes, looking straight at the camera."
   },
   "junk": {
