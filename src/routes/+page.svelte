@@ -23,7 +23,7 @@
         {
             title: 'Syl',
             icon: sylIcon,
-            description: 'Expense tracking app',
+            description: 'Expense tracking app.',
             meta: 'Now',
             href: 'https://getsyl.app',
             external: true
@@ -122,8 +122,8 @@
     </header>
 
     <p class="bio rise" style="--i: 1">
-        I'm a full time software engineer and hobbyist photographer. I'm currently working on an
-        expense tracking app called <a href="https://getsyl.app">Syl</a>.
+        I'm a full time software engineer and hobbyist photographer. I'm currently working on my
+        expense tracking app <a href="https://getsyl.app">Syl</a>.
     </p>
 
     {@render rows('Making', making, 2)}

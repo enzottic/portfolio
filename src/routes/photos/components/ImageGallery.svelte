@@ -154,8 +154,8 @@
         width: 100%;
         height: auto;
         opacity: 0;
-        transition: opacity 0.4s ease;
-        cursor: pointer;
+        transform: scale(1);
+        transition: opacity 0.4s ease, transform 0.3s ease;
     }
 
     .frame:global(.loaded) :global(img) {
@@ -163,7 +163,12 @@
     }
 
     .frame:global(.instant) :global(img) {
-        transition: none;
+        transition: transform 0.3s ease;
+    }
+
+    .frame :global(img:hover) {
+        transform: scale(1.02);
+        cursor: pointer;
     }
 
     @media (prefers-reduced-motion: reduce) {

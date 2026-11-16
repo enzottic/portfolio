@@ -95,14 +95,17 @@
 
     /* Shrink-wraps the photo so the caption can sit on its bottom-left corner. */
     .photo {
+        /* Space kept on the left and right, so wide panoramas don't touch the window edges. */
+        --edge: 48px;
+        --max-w: calc(100vw - 2 * var(--edge));
         position: relative;
         margin: 0;
-        max-width: 100%;
+        max-width: var(--max-w);
     }
 
     .photo :global(img) {
         display: block;
-        max-width: 100vw;
+        max-width: var(--max-w);
         max-height: 80vh;
         width: auto;
         height: auto;
@@ -111,10 +114,10 @@
         background-size: 100% 100%;
     }
 
-    /* Reserve the photo's final box (fit within 100vw × 80vh) with a grey
+    /* Reserve the photo's final box (fit within the side margins × 80vh) with a grey
        placeholder, so the caption sits in its final spot from the first frame. */
     .photo.sized {
-        width: min(100vw, calc(80vh * var(--aspect)));
+        width: min(var(--max-w), calc(80vh * var(--aspect)));
         aspect-ratio: var(--aspect);
         background-color: #3a3a3c;
     }
@@ -175,6 +178,10 @@
     }
 
     @media (max-width: 480px) {
+        .photo {
+            --edge: 16px;
+        }
+
         .glass {
             left: 8px;
             bottom: 8px;
